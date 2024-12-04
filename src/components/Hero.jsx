@@ -4,7 +4,9 @@ import ReactGA from "react-ga4";
 import { ReactTyped } from "react-typed";
 import Resume from "../assets/Resume.pdf";
 import "./hero.css";
-import image from "../assets/pc.png";
+
+import Lottie from "lottie-react";
+import pcAnimation from "../animation/pc.json"
 
 const Hero = () => {
   const trackDownloadResume = () => {
@@ -51,8 +53,12 @@ const Hero = () => {
         </div>
 
         {/* Image Section */}
-        <div className="absolute top-0 right-0 w-1/2 h-full flex justify-center items-center hidden md:block">
-          <img src={image} alt="PC" className="w-full h-full object-contain" />
+        <div className="absolute top-0 right-0  h-full flex justify-center items-center hidden md:block">
+         <Lottie
+        
+         style={{height:420}}
+         animationData={pcAnimation}
+         />
         </div>
       </div>
     </section>

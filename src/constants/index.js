@@ -161,6 +161,7 @@ import {
       ],
       image: KingFood,
       source_code_link: "https://github.com/Merzoug-Manal/Food-Delivery",
+      live_preview_link:"https://food-delivery-frontend-te1l.onrender.com"
     },
     {
       name: "JobFinder",
@@ -182,6 +183,7 @@ import {
       ],
       image: JobFinder,
       source_code_link: "https://github.com/Merzoug-Manal/JobFinder",
+    
     },
     {
       name: "ZenFit",
@@ -204,6 +206,7 @@ import {
       ],
       image: ZenFit,
       source_code_link: "https://github.com/Merzoug-Manal/Fitness-Application",
+      live_preview_link:"https://merzoug-manal.github.io/Fitness-Application/"
     },
     
     {
@@ -247,6 +250,7 @@ import {
       ],
       image: todo_list,
       source_code_link: "https://github.com/Merzoug-Manal/React-Todo-List-App",
+      live_preview_link:"https://merzoug-manal.github.io/React-Todo-List-App/"
     },
   ];
   
