@@ -1,9 +1,16 @@
 import React from "react";
 import SocialLinks from "./SocialLinks/SocialLinks";
-
+import { useTheme } from "./ThemeContext";
 function Footer() {
+  const { theme } = useTheme(); 
+  const contentStyle =
+    theme === "light"
+      ? { background: "#fff" , color: "#060930" }
+      : { background: "#151030", color: "#fff" };
   return (
-    <footer className="flex flex-col items-center justify-center  py-5 px-5 md:px-10 bg-tertiary text-gray-200 text-center">
+    <footer
+    style={contentStyle} 
+    className={`flex flex-col items-center justify-center  py-5 px-5 md:px-10  text-center`}>
     <SocialLinks />
   
     <div className="container">
