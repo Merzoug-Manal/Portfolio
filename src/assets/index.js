@@ -20,9 +20,10 @@ import Laravel from "./tech/Laravel.png";
 import mysql from "./tech/mysql.png";
 import php from "./tech/php.png";
 import postgresql from "./tech/Postgresql.png";
+import vitest from "./tech/vitest.png";
 
 import SAHM from "./company/SAHM.png";
-
+import PRODA from "./company/proda.jpg";
 
 import KingFood from "./kingFood.png";
 import JobFinder from "./JobFinder.png";
@@ -49,9 +50,11 @@ export {
   nodejs,
   reactjs,
   php,
+  vitest,
   tailwind,
   typescript,
   SAHM,
+  PRODA,
   KingFood,
   JobFinder,
   ZenFit,

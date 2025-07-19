@@ -17,9 +17,11 @@ import {
   nodejs,
   reactjs,
   php,
+  vitest,
   tailwind,
   typescript,
   SAHM,
+  PRODA,
   KingFood,
   JobFinder,
   ZenFit,
@@ -81,7 +83,6 @@ import {
       name: "ReactJS",
       icon: reactjs,
     },
-    
     {
       name: "Node.JS",
       icon: nodejs,
@@ -122,6 +123,20 @@ import {
   ];
   
   const experiences = [
+     {
+      title: "Frontend Developer ",
+      company_name: "Proda-Connect",
+      icon: PRODA,
+      iconBg: "white",
+      date: "January 2025 - July 2025",
+      points: [
+        " Developed and maintained responsive user interfaces for a SaaS platform using React.js, TypeScript, and Tailwind CSS.",
+        " Integrated and customized open-source UI components to enhance design consistency and efficiency.",
+        "Collaborated with backend developers to ensure seamless API integration and dynamic functionality.",
+        
+      ],
+    },
+   
     {
       title: "Backend Developer (Intern)",
       company_name: "SAHM",

@@ -6,10 +6,10 @@ import Resume from "../assets/Resume.pdf";
 import "./hero.css";
 import Lottie from "lottie-react";
 import pcAnimation from "../animation/pc.json";
-import { useTheme } from "./ThemeContext"; // ✅ Importation du contexte du thème
+import { useTheme } from "./ThemeContext"; 
 
 const Hero = () => {
-  const { theme } = useTheme(); // ✅ On récupère le thème (light ou dark)
+  const { theme } = useTheme(); 
   
   const trackDownloadResume = () => {
     ReactGA.event({
@@ -21,12 +21,11 @@ const Hero = () => {
   return (
     <section className="relative w-full h-screen mx-auto">
       <div
-        className={`absolute inset-0 top-[160px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[160px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 `}
       >
         <div className="flex flex-col justify-center items-center mt-5">
           <div className="w-5 h-5 rounded-full bg-[#E966A0]" />
           
-          {/* ✅ Classe conditionnelle basée sur le thème */}
           <div 
             className={`w-1 sm:h-80 h-40 bg-gradient-to-b from-[#E966A0] 
               ${theme === 'dark' ? 'to-[#060930]' : 'to-[#fff]'}`}
@@ -34,7 +33,6 @@ const Hero = () => {
         </div>
 
         <div>
-          {/* ✅ Classe conditionnelle sur la couleur du texte */}
           <h2 
             className={`${styles.heroHeadText} ${theme === 'dark' ? 'text-white' : 'text-[#060930]'}`}
           >
@@ -62,9 +60,7 @@ const Hero = () => {
             Download Resume
           </a>
         </div>
-
-        {/* Image Section */}
-        <div className="absolute top-0 right-0 h-full flex justify-center items-center hidden md:block">
+        <div className="absolute top-0 right-0 h-full  justify-center items-center hidden md:block md:w-[25rem] lg:w-auto ">
           <Lottie
             style={{ height: 420 }}
             animationData={pcAnimation}

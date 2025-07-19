@@ -6,6 +6,11 @@ import { technologies } from "../constants";
 import { styles } from "../styles";
 
 const Tech = () => {
+   technologies.forEach((tech, index) => {
+  if (!tech.icon) {
+    console.error(`Technology at index ${index} (${tech.name}) has undefined icon`);
+  }
+});
   return (
     <div>
       <h2 className={`${styles.sectionHeadText} text-center mb-8`}>My Skills.</h2>
@@ -21,6 +26,7 @@ const Tech = () => {
                              opacity-0 group-hover:opacity-100 transition-opacity">
               {technology.name}
             </span>
+            
           </div>
         ))}
       </div>

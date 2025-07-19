@@ -12,9 +12,9 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme(); // Use theme from context
+  const { theme, toggleTheme } = useTheme();
 
-  // Scroll effect for navbar background
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -22,29 +22,52 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const observerOptions = {
+      threshold: 0.5, 
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    navLinks.forEach(nav => {
+      const section = document.getElementById(nav.id);
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${scrolled ? (theme === "light" ? "bg-[#f0bed6]" : "bg-primary") : "bg-transparent"} transition-colors duration-300`}
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 ${
+        scrolled
+          ? theme === "light"
+            ? "bg-[#f0bed6]"
+            : "bg-primary"
+          : "bg-transparent"
+      } transition-colors duration-300`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
           to="/"
-          className="flex items-center gap-2"
+          className="mr-6"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt="logo" className="w-10 h-10 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex">
-            Manal &nbsp;
-            <span className="sm:block hidden"> | Full-Stack Developer</span>
-          </p>
+          <img src={logo} alt="logo" className="w-48 h-10 object-contain " />
         </Link>
 
         {/* Desktop Navigation */}
@@ -53,13 +76,13 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`${
-                active === nav.title
+                active === nav.id
                   ? "text-white"
                   : theme === "light"
-                  ? "text-[#060930]" // light mode
-                  : "text-secondary" // Default text color in dark mode
+                  ? "text-[#060930]"
+                  : "text-secondary"
               } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
+              onClick={() => setActive(nav.id)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
@@ -70,7 +93,7 @@ const Navbar = () => {
             <Icon
               path={theme === "dark" ? mdiWeatherNight : mdiWhiteBalanceSunny}
               size={1}
-              className={`${theme === "dark" ? "text-white" : "text-[#E966A0]"}`}
+              className={theme === "dark" ? "text-white" : "text-[#E966A0]"}
             />
           </li>
         </ul>
@@ -87,28 +110,30 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 ${theme === "light" ? "pink-gradient" : "black-gradient"} absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } p-6 ${
+              theme === "light" ? "pink-gradient" : "black-gradient"
+            } absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title
+                    active === nav.id
                       ? "text-white"
                       : theme === "light"
-                      ? "text-[#060930]" // light mode
+                      ? "text-[#060930]"
                       : "text-secondary"
                   }`}
                   onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
+                    setToggle(false);
+                    setActive(nav.id);
                   }}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
               ))}
-              
+
               {/* Theme Toggle */}
               <li
                 className="flex items-center cursor-pointer mt-4"
@@ -117,7 +142,7 @@ const Navbar = () => {
                 <Icon
                   path={theme === "dark" ? mdiWeatherNight : mdiWhiteBalanceSunny}
                   size={1}
-                  className={`${theme === "dark" ? "text-white" : "text-[#E966A0]"}`}
+                  className={theme === "dark" ? "text-white" : "text-[#E966A0]"}
                 />
               </li>
             </ul>

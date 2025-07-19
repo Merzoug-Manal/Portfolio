@@ -47,9 +47,9 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4  text-[16px]  leading-[30px]'
       >
-      <p>Hello, I'm <span className="text-[#E966A0] " >Manal Merzoug</span>, a dedicated and enthusiastic full-stack developer . I recently earned both a Master's Degree and an Engineering Diploma from the High School of Computer Science in Sidi Bel Abbès, specializing in Information Systems and Web Development. My journey into technology has been both challenging and rewarding, and I am excited to channel my skills into creating impactful digital solutions.</p><br/>
-      <p >I have hands-on experience with technologies such as HTML, CSS, JavaScript, PHP, Node.js, and MySQL. To stay aligned with evolving industry standards, I have also explored modern tools like TypeScript and Tailwind CSS, reflecting my commitment to continuous learning and adaptability in a fast-paced field. Beyond technical skills, I thrive in dynamic and collaborative environments, enjoying opportunities to solve complex problems and devise innovative solutions.</p><br/>
-      My time as a university club member has honed my soft skills, including effective communication, teamwork, and time management, which have proven invaluable in managing projects and meeting deadlines. I am deeply passionate about software development and embrace challenges as opportunities to grow, refine my problem-solving capabilities, and expand my expertise.
+      <p>Hello, I'm <span className="text-[#E966A0] " >Manal Merzoug</span>, a full-stack developer with a Master's Degree and an Engineering Diploma in Information Systems and Web Development from the High School of Computer Science in Sidi Bel Abbès. I'm passionate about building impactful digital solutions and constantly growing in the tech field.</p><br/>
+      <p >I have experience with core technologies like HTML, CSS, JavaScript, PHP, Node.js, and MySQL, as well as modern tools like TypeScript and Tailwind CSS. I enjoy learning new technologies and working in collaborative environments to solve complex problems.</p><br/>
+    Through my involvement in university clubs, I’ve developed strong soft skills such as communication, teamwork, and time management. These experiences have helped me manage projects effectively and grow both personally and professionally.
       </motion.p>
 
       
