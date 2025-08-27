@@ -30,6 +30,7 @@ import JobFinder from "./JobFinder.png";
 import ZenFit from "./ZenFit.png";
 import Medisys from "./medisys.png";
 import todo_list from "./Todo-List.png";
+import FitStyle from "./FitStyle.png"
 
 export {
   logo,
@@ -60,4 +61,5 @@ export {
   ZenFit,
   Medisys,
   todo_list,
+  FitStyle,
 };

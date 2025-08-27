@@ -27,11 +27,11 @@ const ProjectCard = ({
 
   return (
     <motion.div 
-      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.1, 0.75)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      className="w-full sm:w-auto"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full flex justify-center"
     >
       <Tilt
         options={{
@@ -39,73 +39,75 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className={`${contentStyle} p-5 rounded-2xl w-full sm:w-[360px]`} 
+        className={`${contentStyle} p-5 rounded-2xl w-full max-w-[380px] min-h-[420px] flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300`} 
       >
-        <div className="relative w-full h-[230px] group overflow-hidden rounded-2xl">
+        <div className="relative w-full h-[230px] group overflow-hidden rounded-2xl flex-shrink-0">
           {/* Project Image */}
           <img
             src={image}
-            alt="project_image"
+            alt={`${name} project preview`}
             className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110"
           />
 
-          {/* GitHub Side */}
-          <div className="absolute inset-y-0 left-0 w-1/2 h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img
-                src={github}
-                alt="source code"
-                className="w-1/2 h-1/2 object-contain"
-              />
-            </div>
-          </div>
+          {/* Overlay with buttons */}
+          <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+            <div className="flex gap-4">
+              {/* GitHub Button */}
+              {source_code_link && (
+                <div
+                  onClick={() => window.open(source_code_link, "_blank")}
+                  className="black-gradient w-12 h-12 rounded-full flex justify-center items-center cursor-pointer hover:scale-110 transition-transform duration-200 shadow-lg"
+                  title="View Source Code"
+                >
+                  <img
+                    src={github}
+                    alt="source code"
+                    className="w-6 h-6 object-contain"
+                  />
+                </div>
+              )}
 
-          {/* Live Preview Side */}
-          <div className="absolute inset-y-0 right-0 w-1/2 h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            {live_preview_link ? (
+              {/* Live Preview Button */}
               <div
-                onClick={() => window.open(live_preview_link, "_blank")}
-                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+                onClick={() => live_preview_link && window.open(live_preview_link, "_blank")}
+                className={`black-gradient w-12 h-12 rounded-full flex justify-center items-center transition-transform duration-200 shadow-lg ${
+                  live_preview_link 
+                    ? 'cursor-pointer hover:scale-110' 
+                    : 'cursor-not-allowed opacity-60'
+                }`}
+                title={live_preview_link ? "View Live Demo" : "No Live Demo Available"}
               >
                 <Icon
-                  path={mdiEyeOutline}
+                  path={live_preview_link ? mdiEyeOutline : mdiEyeOffOutline}
                   size={1}
                   color="white"
-                  alt="live preview"
-                  className="w-1/2 h-1/2 object-contain"
+                  className="w-6 h-6"
                 />
               </div>
-            ) : (
-              <div className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-not-allowed">
-                <Icon
-                  path={mdiEyeOffOutline}
-                  size={1}
-                  color="white"
-                  alt="no preview available"
-                  className="w-1/2 h-1/2 object-contain"
-                />
-              </div>
-            )}
+            </div>
           </div>
         </div>
 
-        <div className='mt-5'>
-          <h3 className={`${TextStyle} font-bold text-[24px]`}>{name}</h3>
-          <p className={`mt-2 ${DescriptionStyle} text-[14px]`}>{description}</p>
-        </div>
+        {/* Content Section */}
+        <div className='mt-5 flex-grow flex flex-col'>
+          <h3 className={`${TextStyle} font-bold text-[24px] mb-3 line-clamp-2`}>
+            {name}
+          </h3>
+          <p className={`${DescriptionStyle} text-[14px] leading-[22px] flex-grow line-clamp-4`}>
+            {description}
+          </p>
 
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
-            >
-              #{tag.name}
-            </p>
-          ))}
+          {/* Tags Section */}
+          <div className='mt-4 flex flex-wrap gap-2 pt-2'>
+            {tags.map((tag) => (
+              <span
+                key={`${name}-${tag.name}`}
+                className={`text-[12px] px-3 py-1 rounded-full border border-current ${tag.color} bg-opacity-10 backdrop-blur-sm`}
+              >
+                #{tag.name}
+              </span>
+            ))}
+          </div>
         </div>
       </Tilt>
     </motion.div>
@@ -113,6 +115,9 @@ const ProjectCard = ({
 };
 
 const Projects = () => {
+  const { theme } = useTheme();
+  const textStyle = theme === "light" ? "text-[#060930]" : "text-secondary";
+  
   return (
     <>
       <motion.div 
@@ -121,23 +126,26 @@ const Projects = () => {
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
       >
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mb-8">
           <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
         </div>
       </motion.div>
 
-      <div className='w-full flex'>
+      <div className='w-full flex justify-center mb-12'>
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className='text-secondary text-[17px] w-full leading-[30px]' 
+          className={`${textStyle} text-[17px] max-w-3xl text-center leading-[30px]`}
         >
+          Following projects showcase my skills and experience through real-world examples of my work. 
+          Each project is briefly described with links to code repositories and live demos.
         </motion.p>
       </div>
 
-      <div className='mt-16 flex flex-wrap  gap-3'>
+      {/* Improved Grid Layout */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 place-items-center w-full max-w-7xl mx-auto'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}

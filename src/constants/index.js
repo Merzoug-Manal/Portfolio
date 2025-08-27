@@ -1,5 +1,4 @@
 import {
- 
   github,
   menu,
   close,
@@ -27,6 +26,7 @@ import {
   ZenFit,
   Medisys,
   todo_list,
+  FitStyle
   } from "../assets";
   
   export const navLinks = [
@@ -157,6 +157,27 @@ import {
   
   const projects = [
     {
+      name: "FitStyle",
+      description:
+        "FitStyle is a full-stack e-commerce application allows users to browse and consult available equipment, add items to the cart, and place orders. On the other hand, sellers have a dashboard where they can manage products, update details, and track customer orders.",
+      tags: [
+        {
+          name: "Nextjs",
+          color: "blue-text-gradient",
+        },
+        {
+          name: " TailwindCSS",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Mongodb",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: FitStyle,
+      live_preview_link:"https://e-commerce-rho-three-79.vercel.app/"
+    },
+    {
       name: "KingFood",
       description:
         "FoodKing is my latest Full-Stack MERN application designed for order placement and management. Users can sign up, browse the menu, place food orders, and confirm their purchases. On the other hand, the admin has full control to manage orders and update or modify the items in the menu.",
@@ -181,7 +202,7 @@ import {
     {
       name: "JobFinder",
       description:
-        "JobFinder is a web application for e-recruitment and job market management, built using a microservices architecture.  This project was part of my 4th-year studies at the High School of Computer Science in Sidi Bel Abbès, where I collaborated with three colleagues. My primary role was as the frontend developer, focusing on creating an intuitive and user-friendly interface.",
+        "JobFinder is a web application for e-recruitment and job market management, built using a microservices architecture.  This project was part of my 4th-year studies at the High School of Computer Science in Sidi Bel Abbès. My primary role was as the frontend developer, focusing on creating an intuitive and user-friendly interface.",
       tags: [
         {
           name: "React",
