@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react"; // ✅ Import Lottie for animations
+import Lottie from "lottie-react"; 
 import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
@@ -27,7 +27,6 @@ const Contact = () => {
     e.preventDefault();
     const newErrors = {};
 
-  
     if (!form.name.trim()) newErrors.name = "Name is required.";
     if (!form.email.trim()) newErrors.email = "Email is required.";
     if (!form.message.trim()) newErrors.message = "Message is required.";
@@ -40,16 +39,14 @@ const Contact = () => {
     setLoading(true);
     emailjs
       .send(
-        'service_zl471ln',
-        'template_jcauflq',
+        'service_qj480rn',
+        'template_el54o6w',
         {
-          from_name: form.name,
-          to_name: "Merzoug Manal",
-          from_email: form.email,
-          to_email: "manelmimi1108@gmail.com",
+          name: form.name,        // Changed from 'from_name' to 'name'
+          email: form.email,      // Changed from 'from_email' to 'email'
           message: form.message,
         },
-        'LknWkD5w221YItbM3'
+        'nrI8uvFxtsEA64LIO'
       )
       .then(() => {
         setLoading(false);
@@ -58,8 +55,15 @@ const Contact = () => {
       })
       .catch((error) => {
         setLoading(false);
-        console.error(error);
-        alert("Ahh, something went wrong. Please try again.");
+        console.error("EmailJS Error:", error);
+        
+        if (error.status === 404) {
+          alert("EmailJS configuration error: Account not found. Please check your Service ID, Template ID, and Public Key.");
+        } else if (error.status === 401) {
+          alert("EmailJS authentication error: Invalid Public Key.");
+        } else {
+          alert(`Failed to send message: ${error.text || "Please try again later."}`);
+        }
       });
   };
 
