@@ -11,13 +11,20 @@ import {
   html,
   Laravel,
   postgresql,
+  postman,
   javascript,
   mongodb,
+  express,
+  vercel,
+  sql,
   nodejs,
   reactjs,
   php,
+  redux,
+  nextjs,
   vitest,
   tailwind,
+  scss,
   typescript,
   SAHM,
   PRODA,
@@ -63,6 +70,10 @@ import {
       name: "CSS3",
       icon: css,
     },
+     {
+      name: "SCSS",
+      icon: scss,
+    },
     {
       name: "Tailwind CSS",
       icon: tailwind,
@@ -83,9 +94,21 @@ import {
       name: "ReactJS",
       icon: reactjs,
     },
+     {
+      name: "Nextjs",
+      icon: nextjs,
+    },
+      {
+      name: "Redux",
+      icon: redux,
+    },
     {
       name: "Node.JS",
       icon: nodejs,
+    },
+     {
+      name: "Express.JS",
+      icon: express,
     },
     {
       name: "PHP",
@@ -95,8 +118,12 @@ import {
       name: "Laravel",
       icon: Laravel,
     },
+     {
+      name: "SQL",
+      icon: sql,
+    },
     {
-      name: "Mysql",
+      name: "MySQL",
       icon: mysql,
     },
     {
@@ -104,7 +131,7 @@ import {
       icon: mongodb,
     },
     {
-      name: "Postgresql",
+      name: "PostgreSQL",
       icon: postgresql,
     },
    
@@ -113,12 +140,24 @@ import {
       icon: git,
     },
     {
+      name: "Github",
+      icon: github,
+    },
+     {
+      name: "Postman",
+      icon: postman,
+    },
+    {
       name: "Figma",
       icon: figma,
     },
     {
       name: "Docker",
       icon: docker,
+    },
+    {
+      name: "Vercel",
+      icon: vercel,
     },
   ];
   
@@ -138,7 +177,7 @@ import {
     },
    
     {
-      title: "Backend Developer (Intern)",
+      title: "Software Engineer (Intern)",
       company_name: "SAHM",
       icon: SAHM,
       iconBg: "white",

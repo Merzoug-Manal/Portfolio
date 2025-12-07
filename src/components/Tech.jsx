@@ -1,32 +1,80 @@
-import React from "react";
-
-import { BallCanvas } from "./canvas";
+import  { useState } from "react";
 import { SectionWrapper } from "../hoc";
 import { technologies } from "../constants";
 import { styles } from "../styles";
+import { useTheme } from "./ThemeContext";
 
 const Tech = () => {
-   technologies.forEach((tech, index) => {
-  if (!tech.icon) {
-    console.error(`Technology at index ${index} (${tech.name}) has undefined icon`);
-  }
-});
+  const [activeTab, setActiveTab] = useState("frontend");
+   const { theme } = useTheme();
+    const textStyle = theme === "light" ? "text-[#060930]" : "text-white";
+  
+  // Categorize technologies
+  const categorizedTech = {
+    frontend: technologies.filter(tech => 
+      ['HTML5','CSS3', 'SCSS','Tailwind CSS','Bootstrap', 'JavaScript', 'TypeScript', 'ReactJS', 'Redux',"Nextjs"].includes(tech.name)
+    ),
+    backend: technologies.filter(tech => 
+      ['Node.JS','Express.JS','PHP', 'Laravel','SQL', 'MySQL', 'MongoDB', 'PostgreSQL'].includes(tech.name)
+    ),
+    tools: technologies.filter(tech => 
+      ['Postman','Git','Github','Figma','Docker','Vercel'].includes(tech.name)
+    )
+  };
+
+  const tabs = [
+    { id: 'frontend', label: 'Frontend' },
+    { id: 'backend', label: 'Backend' },
+    { id: 'tools', label: 'Tools & Others' }
+  ];
+
   return (
     <div>
-      <h2 className={`${styles.sectionHeadText} text-center mb-8`}>My Skills.</h2>
-      <br />
+      <h2 className={`${styles.sectionHeadText} text-center mb-12`}>My Skills.</h2>
 
-      <div className="flex flex-row flex-wrap justify-center gap-10">
-        {technologies.map((technology) => (
-          <div className="w-24 h-24 relative group" key={technology.name}>
-            <BallCanvas icon={technology.icon} />
-          
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full 
-                             bg-[595B83] text-white text-s font-medium py-1 px-2 rounded 
-                             opacity-0 group-hover:opacity-100 transition-opacity">
+      {/* Tab Navigation */}
+      <div className="flex justify-center mb-12">
+        <div className="inline-flex bg-[#1a1a2e] rounded-full p-1.5 gap-2">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeTab === tab.id
+                  ? 'bg-[#E966A0] text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Skills Grid */}
+      <div className="flex flex-wrap justify-center gap-12 max-w-5xl mx-auto">
+        {categorizedTech[activeTab].map((technology) => (
+          <div 
+            key={technology.name} 
+            className="flex flex-col items-center gap-4 group"
+          >
+            {/* Icon Container */}
+            <div className="w-28 h-28 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] 
+                          rounded-2xl flex items-center justify-center 
+                          transform transition-all duration-300 
+                          group-hover:scale-110 group-hover:shadow-2xl 
+                          group-hover:shadow-purple-500/50">
+              <img 
+                src={technology.icon} 
+                alt={technology.name}
+                className="w-16 h-16 object-contain"
+              />
+            </div>
+            
+            {/* Label */}
+            <span className={`${textStyle} text-base font-medium text-center max-w-[120px]`}>
               {technology.name}
             </span>
-            
           </div>
         ))}
       </div>

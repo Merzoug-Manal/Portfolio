@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react"; 
 import emailjs from "@emailjs/browser";
@@ -42,8 +42,8 @@ const Contact = () => {
         'service_qj480rn',
         'template_el54o6w',
         {
-          name: form.name,        // Changed from 'from_name' to 'name'
-          email: form.email,      // Changed from 'from_email' to 'email'
+          name: form.name,       
+          email: form.email,     
           message: form.message,
         },
         'nrI8uvFxtsEA64LIO'
