@@ -33,19 +33,27 @@ const Tech = () => {
       <h2 className={`${styles.sectionHeadText} text-center mb-12`}>My Skills.</h2>
 
       {/* Tab Navigation */}
+      {/* Tab Navigation */}
       <div className="flex justify-center mb-12">
-        <div className="inline-flex bg-[#1a1a2e] rounded-full p-1.5 gap-2">
+        <div className="inline-flex bg-[#1a1a2e] rounded-full p-1.5 gap-1 md:gap-2">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 md:px-8 py-2 md:py-3 rounded-full font-medium transition-all duration-300 text-sm md:text-base ${
                 activeTab === tab.id
                   ? 'bg-[#E966A0] text-white'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              {tab.label}
+              {tab.id === 'tools' ? (
+                <>
+                  <span className="md:hidden">Tools</span>
+                  <span className="hidden md:inline">{tab.label}</span>
+                </>
+              ) : (
+                tab.label
+              )}
             </button>
           ))}
         </div>
